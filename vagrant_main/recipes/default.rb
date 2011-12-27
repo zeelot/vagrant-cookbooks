@@ -17,7 +17,8 @@ require_recipe "php::module_memcache"
 require_recipe "php::module_mysql"
 require_recipe "php::module_sqlite3"
 
-package "php5-xdebug";
+package "php5-xdebug"
+package "git-core"
 
 require_recipe "rabbitmq"
 require_recipe "rabbitmq-management"
@@ -30,10 +31,14 @@ file "/etc/php5/apache2/conf.d/upload_path.ini" do
   action :create
 end
 
+# Remove the 000-default site
+apache_site "000-default"
+
 web_app "localhost" do
   server_name "localhost"
   server_aliases ["*.localhost"]
   docroot "/home/vagrant/web-app/httpdocs"
+  kohana_environment "development"
 end
 
 apt_repository "php-amqp" do
