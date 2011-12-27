@@ -20,9 +20,6 @@ require_recipe "php::module_sqlite3"
 package "php5-xdebug"
 package "git-core"
 
-require_recipe "rabbitmq"
-require_recipe "rabbitmq-management"
-
 # Had some issues with an upload path not being specified so we set one here
 file "/etc/php5/apache2/conf.d/upload_path.ini" do
   owner "root"
@@ -40,16 +37,6 @@ web_app "localhost" do
   docroot "/home/vagrant/web-app/httpdocs"
   kohana_environment "development"
 end
-
-apt_repository "php-amqp" do
-  uri "http://ppa.launchpad.net/managedit/php-extensions/ubuntu"
-  distribution "oneiric"
-  components ["main"]
-  key "F9E66E70"
-  keyserver "keyserver.ubuntu.com"
-  action :add
-end
-package "php5-amqp"
 
 gem_package "compass" do
   action :install
