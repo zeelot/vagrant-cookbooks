@@ -44,6 +44,20 @@ gem_package "compass" do
   provider Chef::Provider::Package::Rubygems
 end
 
+gem_package "foreman" do
+  action :install
+  version "0.26.1"
+  provider Chef::Provider::Package::Rubygems
+end
+
+remote_file "/usr/bin/wkhtmltopdf" do
+  source "http://zeelot.s3.amazonaws.com/cookbook-files/wkhtmltopdf-amd64-0.9.9"
+  group "root"
+  owner "root"
+  mode "0755"
+  checksum "c1047cca6bce10d3d1cf7fed4520f2f2be5be5176cba73cf550d0f87f530df3e"
+end
+
 # Add the vagrant user to the vboxsf group
 group "vboxsf" do
   members 'vagrant'
