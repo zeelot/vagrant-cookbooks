@@ -1,3 +1,8 @@
+# For some reason, a fresh copy of my VM has issues booting up until this runs
+execute "initial-sudo-apt-get-update" do
+  command "apt-get update"
+end
+
 # Making apache run as the vagrant user simplifies things when you ssh in
 node.set["apache"]["user"] = "vagrant"
 node.set["apache"]["group"] = "vagrant"
