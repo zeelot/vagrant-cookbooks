@@ -22,7 +22,8 @@ require_recipe "php::module_memcache"
 require_recipe "php::module_mysql"
 require_recipe "php::module_sqlite3"
 
-package "php5-xdebug"
+require_recipe "xdebug"
+
 package "git-core"
 
 # Had some issues with an upload path not being specified so we set one here
