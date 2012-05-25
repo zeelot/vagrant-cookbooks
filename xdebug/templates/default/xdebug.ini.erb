@@ -2,7 +2,7 @@
 ;
 ; This is a generated file, do not modify by hand
 
-zend_extension = <%= %x[ php -i | grep extension_dir | awk '{print $(NF)}' ].strip %>/xdebug.so
+zend_extension = <%= %x[find /usr/lib/php5 -name 'xdebug.so' 2> /dev/null] %>
 
 ; -----------------------------------------------------------------------------
 ; xdebug.auto_trace
@@ -12,9 +12,9 @@ zend_extension = <%= %x[ php -i | grep extension_dir | awk '{print $(NF)}' ].str
 ; When this setting is set to on, the tracing of function calls will be enabled
 ; just before the script is run. This makes it possible to trace code in the
 ; auto_prepend_file [1].
-; 
+;
 ; [1] http://www.php.net/manual/en/ini.core.php#ini.auto-append-file
-; 
+;
 ;
 xdebug.auto_trace = <%= node['xdebug']['auto_trace'] %>
 
@@ -25,7 +25,7 @@ xdebug.auto_trace = <%= node['xdebug']['auto_trace'] %>
 ;
 ; If this setting is 1, Xdebug will color var_dumps and stack traces output when
 ; in CLI mode.
-; 
+;
 ;
 xdebug.cli_color = <%= node['xdebug']['cli_color'] %>
 
@@ -36,7 +36,7 @@ xdebug.cli_color = <%= node['xdebug']['cli_color'] %>
 ;
 ; This setting, defaulting to 0, controls whether Xdebug should add variable
 ; assignments to function traces.
-; 
+;
 ;
 xdebug.collect_assignments = <%= node['xdebug']['collect_assignments'] %>
 
@@ -48,7 +48,7 @@ xdebug.collect_assignments = <%= node['xdebug']['collect_assignments'] %>
 ; This setting, defaulting to 1, controls whether Xdebug should write the
 ; filename used in include(), include_once(), require() or require_once() to the
 ; trace files.
-; 
+;
 ;
 xdebug.collect_includes = <%= node['xdebug']['collect_includes'] %>
 
@@ -60,7 +60,7 @@ xdebug.collect_includes = <%= node['xdebug']['collect_includes'] %>
 ; This setting, defaulting to 0, controls whether Xdebug should collect the
 ; parameters passed to functions when a function call is recorded in either the
 ; function trace or the stack trace.
-; 
+;
 ; The setting defaults to 0 because for very large scripts it may use huge
 ; amounts of memory and therefore make it impossible for the huge script to run.
 ; You can most safely turn this setting on, but you can expect some problems in
@@ -69,12 +69,12 @@ xdebug.collect_includes = <%= node['xdebug']['collect_includes'] %>
 ; as it will never store this information in memory. Instead it will only be
 ; written to disk. This means that you need to have a look at the disk usage
 ; though.
-; 
+;
 ; This setting can have four different values. For each of the values a
 ; different amount of information is shown. Below you will see what information
 ; each of the values provides. See also the introduction of the feature Stack
 ; Traces for a few screenshots.
-; 
+;
 ; =====  ========================================================================
 ; Value  Argument Information Shown
 ; =====  ========================================================================
@@ -90,10 +90,10 @@ xdebug.collect_includes = <%= node['xdebug']['collect_includes'] %>
 ; -----  ------------------------------------------------------------------------
 ; 4      Full variable contents and variable name.
 ; =====  ========================================================================
-; 
+;
 ; 1 in the CLI version of PHP it will not have the tool tip, nor in output
 ; files.
-; 
+;
 ;
 xdebug.collect_params = <%= node['xdebug']['collect_params'] %>
 
@@ -104,7 +104,7 @@ xdebug.collect_params = <%= node['xdebug']['collect_params'] %>
 ;
 ; This setting, defaulting to 0, controls whether Xdebug should write the return
 ; value of function calls to the trace files.
-; 
+;
 ;
 xdebug.collect_return = <%= node['xdebug']['collect_return'] %>
 
@@ -118,7 +118,7 @@ xdebug.collect_return = <%= node['xdebug']['collect_return'] %>
 ; engineer PHP's opcode arrays. This setting will not record which values the
 ; different variables have, for that use xdebug.collect_params. This setting
 ; needs to be enabled only if you wish to use xdebug_get_declared_vars().
-; 
+;
 ;
 xdebug.collect_vars = <%= node['xdebug']['collect_vars'] %>
 
@@ -130,7 +130,7 @@ xdebug.collect_vars = <%= node['xdebug']['collect_vars'] %>
 ; If this setting is set to 0, then Xdebug will not set-up internal structures
 ; to allow code coverage. This speeds up Xdebug quite a bit, but of course, Code
 ; Coverage Analysis won't work.
-; 
+;
 ;
 xdebug.coverage_enable = <%= node['xdebug']['coverage_enable'] %>
 
@@ -143,7 +143,7 @@ xdebug.coverage_enable = <%= node['xdebug']['coverage_enable'] %>
 ; event. You can disable showing stacktraces from your code with
 ; xdebug_disable(). As this is one of the basic functions of Xdebug, it is
 ; advisable to leave this setting set to 1.
-; 
+;
 ;
 xdebug.default_enable = <%= node['xdebug']['default_enable'] %>
 
@@ -158,9 +158,9 @@ xdebug.default_enable = <%= node['xdebug']['default_enable'] %>
 ; variables from this superglobal to dump, but make sure you do not add spaces
 ; in this setting. In order to dump the REMOTE_ADDR and the REQUEST_METHOD when
 ; an error occurs, add this setting:
-; 
+;
 ;     xdebug.dump.SERVER = REMOTE_ADDR,REQUEST_METHOD
-; 
+;
 ;
 ;xdebug.dump.* = Empty
 
@@ -171,7 +171,7 @@ xdebug.default_enable = <%= node['xdebug']['default_enable'] %>
 ;
 ; Controls whether the values of the superglobals as defined by the
 ; xdebug.dump.* settings whould be shown or not.
-; 
+;
 ;
 xdebug.dump_globals = <%= node['xdebug']['dump_globals'] %>
 
@@ -182,7 +182,7 @@ xdebug.dump_globals = <%= node['xdebug']['dump_globals'] %>
 ;
 ; Controls whether the values of the superglobals should be dumped on all error
 ; situations (set to 0) or only on the first (set to 1).
-; 
+;
 ;
 xdebug.dump_once = <%= node['xdebug']['dump_once'] %>
 
@@ -193,7 +193,7 @@ xdebug.dump_once = <%= node['xdebug']['dump_once'] %>
 ;
 ; If you want to dump undefined values from the superglobals you should set this
 ; setting to 1, otherwise leave it set to 0.
-; 
+;
 ;
 xdebug.dump_undefined = <%= node['xdebug']['dump_undefined'] %>
 
@@ -208,25 +208,25 @@ xdebug.dump_undefined = <%= node['xdebug']['dump_undefined'] %>
 ; this option as PHP's generated oparrays will increase with about a third of
 ; the size slowing down your scripts. This setting can not be set in your
 ; scripts with ini_set(), but only in php.ini.
-; 
+;
 ;
 xdebug.extended_info = <%= node['xdebug']['extended_info'] %>
 
 ; -----------------------------------------------------------------------------
 ; xdebug.file_link_format
 ;
-; Type: string, Default value: 
+; Type: string, Default value:
 ;
 ; This setting determines the format of the links that are made in the display
 ; of stack traces where file names are used. This allows IDEs to set up a
 ; link-protocol that makes it possible to go directly to a line and file by
 ; clicking on the filenames that Xdebug shows in stack traces. An example format
 ; might look like:
-; 
+;
 ;     myide://%f@%l
-;     
+;
 ; The possible format specifiers are:
-; 
+;
 ; =========  ===============
 ; Specifier  Meaning
 ; =========  ===============
@@ -234,36 +234,36 @@ xdebug.extended_info = <%= node['xdebug']['extended_info'] %>
 ; ---------  ---------------
 ; %l         the line number
 ; =========  ===============
-; 
+;
 ; To make file/line links work with FireFox (Linux), use the following steps:
-; 
+;
 ; - Open
-; 
+;
 ;   about:config
-; 
+;
 ; - Add a new boolean setting "network.protocol-handler.expose.xdebug"
-; 
+;
 ; - Add the following into a shell script "~/bin/ff-xdebug.sh":
-; 
+;
 ;     #! /bin/sh
-;     
+;
 ;     f=`echo $1 | cut -d @ -f 1 | sed 's/xdebug:\/\///'`
 ;     l=`echo $1 | cut -d @ -f 2`
-;     
+;
 ;   Add to that one of (depending whether you have komodo or gvim):
-; 
+;
 ;   - komodo $f -l $l
-; 
+;
 ;   - gvim --remote-tab +$l $f
-; 
+;
 ; - Make the script executable with
-; 
+;
 ; chmod +x ~/bin/ff-xdebug.sh
-; 
+;
 ; - Set the xdebug.file_link_format to
-; 
+;
 ; xdebug://%f@%l
-; 
+;
 ;
 xdebug.file_link_format = <%= node['xdebug']['file_link_format'] %>
 
@@ -277,7 +277,7 @@ xdebug.file_link_format = <%= node['xdebug']['file_link_format'] %>
 ; DBGP_IDEKEY is consulted, then USER and as last USERNAME. The default is set
 ; to the first environment variable that is found. If none could be found the
 ; setting has as default ''.
-; 
+;
 ;
 ;xdebug.idekey = *complex*
 
@@ -289,7 +289,7 @@ xdebug.file_link_format = <%= node['xdebug']['file_link_format'] %>
 ; This is the base url for the links from the function traces and error message
 ; to the manual pages of the function from the message. It is advisable to set
 ; this setting to use the closest mirror.
-; 
+;
 ;
 xdebug.manual_url = <%= node['xdebug']['manual_url'] %>
 
@@ -301,7 +301,7 @@ xdebug.manual_url = <%= node['xdebug']['manual_url'] %>
 ; Controls the protection mechanism for infinite recursion protection. The value
 ; of this setting is the maximum level of nested functions that are allowed
 ; before the script will be aborted.
-; 
+;
 ;
 xdebug.max_nesting_level = <%= node['xdebug']['max_nesting_level'] %>
 
@@ -314,7 +314,7 @@ xdebug.max_nesting_level = <%= node['xdebug']['max_nesting_level'] %>
 ; displaying variables when the html_errors php.ini setting is set to 1. In case
 ; you do not want that, you can set this setting to 0, but check first if it's
 ; not smarter to turn off html_errors.
-; 
+;
 ;
 xdebug.overload_var_dump = <%= node['xdebug']['overload_var_dump'] %>
 
@@ -327,7 +327,7 @@ xdebug.overload_var_dump = <%= node['xdebug']['overload_var_dump'] %>
 ; new request would map to the same file (depnding on the
 ; xdebug.profiler_output_name setting. Instead the file will be appended to with
 ; the new profile.
-; 
+;
 ;
 xdebug.profiler_append = <%= node['xdebug']['profiler_append'] %>
 
@@ -341,7 +341,7 @@ xdebug.profiler_append = <%= node['xdebug']['profiler_append'] %>
 ; can not be set in your script with ini_set(). If you want to selectively
 ; enable the profiler, please set xdebug.profiler_enable_trigger to 1
 ; **instead** of using this setting.
-; 
+;
 ;
 xdebug.profiler_enable = <%= node['xdebug']['profiler_enable'] %>
 
@@ -355,7 +355,7 @@ xdebug.profiler_enable = <%= node['xdebug']['profiler_enable'] %>
 ; name XDEBUG_PROFILE. This will then write the profiler data to defined
 ; directory. In order to prevent the profiler to generate profile files for each
 ; request, you need to set xdebug.profiler_enable to 0.
-; 
+;
 ;
 xdebug.profiler_enable_trigger = <%= node['xdebug']['profiler_enable_trigger'] %>
 
@@ -367,7 +367,7 @@ xdebug.profiler_enable_trigger = <%= node['xdebug']['profiler_enable_trigger'] %
 ; The directory where the profiler output will be written to, make sure that the
 ; user who the PHP will be running as has write permissions to that directory.
 ; This setting can not be set in your script with ini_set().
-; 
+;
 ;
 xdebug.profiler_output_dir = <%= node['xdebug']['profiler_output_dir'] %>
 
@@ -380,9 +380,9 @@ xdebug.profiler_output_dir = <%= node['xdebug']['profiler_output_dir'] %>
 ; The setting specifies the format with format specifiers, very similar to
 ; sprintf() and strftime(). There are several format specifiers that can be used
 ; to format the file name.
-; 
+;
 ; See the xdebug.trace_output_name documentation for the supported specifiers.
-; 
+;
 ;
 xdebug.profiler_output_name = <%= node['xdebug']['profiler_output_name'] %>
 
@@ -395,7 +395,7 @@ xdebug.profiler_output_name = <%= node['xdebug']['profiler_output_name'] %>
 ; debugging (see Remote Debugging). When this setting is set to 1, Xdebug will
 ; always attempt to start a remote debugging session and try to connect to a
 ; client, even if the GET/POST/COOKIE variable was not present.
-; 
+;
 ;
 xdebug.remote_autostart = <%= node['xdebug']['remote_autostart'] %>
 
@@ -410,7 +410,7 @@ xdebug.remote_autostart = <%= node['xdebug']['remote_autostart'] %>
 ; note that there is **no** filter available, and anybody who can connect to the
 ; webserver will then be able to start a debugging session, even if their
 ; address does not match xdebug.remote_host.
-; 
+;
 ;
 xdebug.remote_connect_back = <%= node['xdebug']['remote_connect_back'] %>
 
@@ -421,7 +421,7 @@ xdebug.remote_connect_back = <%= node['xdebug']['remote_connect_back'] %>
 ;
 ; This setting can be used to increase (or decrease) the time that the remote
 ; debugging session stays alive via the session cookie.
-; 
+;
 ;
 xdebug.remote_cookie_expire_time = <%= node['xdebug']['remote_cookie_expire_time'] %>
 
@@ -434,7 +434,7 @@ xdebug.remote_cookie_expire_time = <%= node['xdebug']['remote_cookie_expire_time
 ; is listening on the host and port as set with the settings xdebug.remote_host
 ; and xdebug.remote_port. If a connection can not be established the script will
 ; just continue as if this setting was 0.
-; 
+;
 ;
 xdebug.remote_enable = <%= node['xdebug']['remote_enable'] %>
 
@@ -447,12 +447,12 @@ xdebug.remote_enable = <%= node['xdebug']['remote_enable'] %>
 ; 'gdb' which enables the GDB like debugger interface or 'dbgp' - the debugger
 ; protocol [2]. The DBGp protocol is more widely supported by clients. See more
 ; information in the introduction for Remote Debugging.
-; 
+;
 ; [1] http://www.php.net/manual/en/debugger.php
 ; [2] http://xdebug.org/docs-dbgp.php
-; 
+;
 ; **Note**: Xdebug 2.1 and later only support 'dbgp' as protocol.
-; 
+;
 ;
 xdebug.remote_handler = <%= node['xdebug']['remote_handler'] %>
 
@@ -464,26 +464,26 @@ xdebug.remote_handler = <%= node['xdebug']['remote_handler'] %>
 ; Selects the host where the debug client is running, you can either use a host
 ; name or an IP address. This setting is ignored if xdebug.remote_connect_back
 ; is enabled.
-; 
+;
 ;
 xdebug.remote_host = <%= node['xdebug']['remote_host'] %>
 
 ; -----------------------------------------------------------------------------
 ; xdebug.remote_log
 ;
-; Type: string, Default value: 
+; Type: string, Default value:
 ;
 ; If set to a value, it is used as filename to a file to which all remote
 ; debugger communications are logged. The file is always opened in append-mode,
 ; and will therefore not be overwritten by default. There is no concurrency
 ; protection available. The format of the file looks something like:
-; 
+;
 ;     Log opened at 2007-05-27 14:28:15
 ;     -> <init xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/dbgp/x ... ight></init>
-;     
+;
 ;     <- step_into -i 1
 ;     -> <response xmlns="urn:debugger_protocol_v1" xmlns:xdebug="http://xdebug.org/db ... ></response>
-; 
+;
 ;
 xdebug.remote_log = <%= node['xdebug']['remote_log'] %>
 
@@ -494,15 +494,15 @@ xdebug.remote_log = <%= node['xdebug']['remote_log'] %>
 ;
 ; Selects when a debug connection is initiated. This setting can have two
 ; different values:
-; 
+;
 ; req
 ;     Xdebug will try to connect to the debug client as soon as the script
 ;     starts.
-; 
+;
 ; jit
 ;     Xdebug will only try to connect to the debug client as soon as an error
 ;     condition occurs.
-; 
+;
 ;
 xdebug.remote_mode = <%= node['xdebug']['remote_mode'] %>
 
@@ -514,7 +514,7 @@ xdebug.remote_mode = <%= node['xdebug']['remote_mode'] %>
 ; The port to which Xdebug tries to connect on the remote host. Port 9000 is the
 ; default for both the client and the bundled debugclient. As many clients use
 ; this port number, it is best to leave this setting unchanged.
-; 
+;
 ;
 xdebug.remote_port = <%= node['xdebug']['remote_port'] %>
 
@@ -525,7 +525,7 @@ xdebug.remote_port = <%= node['xdebug']['remote_port'] %>
 ;
 ; If this setting is 1, then Xdebug will disable the @ (shut-up) operator so
 ; that notices, warnings and errors are no longer hidden.
-; 
+;
 ;
 xdebug.scream = <%= node['xdebug']['scream'] %>
 
@@ -536,7 +536,7 @@ xdebug.scream = <%= node['xdebug']['scream'] %>
 ;
 ; When this setting is set to 1, Xdebug will show a stack trace whenever an
 ; exception is raised - even if this exception is actually caught.
-; 
+;
 ;
 xdebug.show_exception_trace = <%= node['xdebug']['show_exception_trace'] %>
 
@@ -549,7 +549,7 @@ xdebug.show_exception_trace = <%= node['xdebug']['show_exception_trace'] %>
 ; error situations will also show all variables in the top-most scope. Beware
 ; that this might generate a lot of information, and is therefore turned off by
 ; default.
-; 
+;
 ;
 xdebug.show_local_vars = <%= node['xdebug']['show_local_vars'] %>
 
@@ -562,7 +562,7 @@ xdebug.show_local_vars = <%= node['xdebug']['show_local_vars'] %>
 ; trace files will show the difference in memory usage between function calls.
 ; If Xdebug is configured to generate computer-readable trace files then they
 ; will always show this information.
-; 
+;
 ;
 xdebug.show_mem_delta = <%= node['xdebug']['show_mem_delta'] %>
 
@@ -576,7 +576,7 @@ xdebug.show_mem_delta = <%= node['xdebug']['show_mem_delta'] %>
 ; XDEBUG_TRACE. This will then write the trace data to defined directory. In
 ; order to prevent Xdebug to generate trace files for each request, you need to
 ; set xdebug.auto_trace to 0.
-; 
+;
 ;
 xdebug.trace_enable_trigger = <%= node['xdebug']['trace_enable_trigger'] %>
 
@@ -586,12 +586,12 @@ xdebug.trace_enable_trigger = <%= node['xdebug']['trace_enable_trigger'] %>
 ; Type: integer, Default value: 0
 ;
 ; The format of the trace file.
-; 
+;
 ; =====  ==============================================================================
 ; Value  Description
 ; =====  ==============================================================================
 ; 0      shows a human readable indented trace file with:
-;        
+;
 ;        *time index*, *memory usage*, *memory delta* (if the setting
 ;        xdebug.show_mem_delta is enabled), *level*, *function name*, *function
 ;        parameters* (if the setting xdebug.collect_params is enabled), *filename* and
@@ -601,20 +601,20 @@ xdebug.trace_enable_trigger = <%= node['xdebug']['trace_enable_trigger'] %>
 ;        different records for entering a stack frame, and leaving a stack frame. The
 ;        table below lists the fields in each type of record. Fields are tab separated.
 ; =====  ==============================================================================
-; 
+;
 ; Fields for the computerized format:
-; 
+;
 ; ===========  =====  ==========  ==========  ==========  ============  =============  =========================================  ================================  ========  ===========
 ; Record type  1      2           3           4           5             6              7                                          8                                 9         10
 ; ===========  =====  ==========  ==========  ==========  ============  =============  =========================================  ================================  ========  ===========
 ; Entry        level  function #  always '0'  time index  memory usage  function name  user-defined (1) or internal               name of the include/require file  filename  line number
-;                                                                                      function (0)                                                                           
+;                                                                                      function (0)
 ; -----------  -----  ----------  ----------  ----------  ------------  -------------  -----------------------------------------  --------------------------------  --------  -----------
-; Exit         level  function #  always '1'  time index  memory usage  empty                                                                                                 
+; Exit         level  function #  always '1'  time index  memory usage  empty
 ; ===========  =====  ==========  ==========  ==========  ============  =============  =========================================  ================================  ========  ===========
-; 
+;
 ; See the introduction of Function Traces for a few examples.
-; 
+;
 ;
 xdebug.trace_format = <%= node['xdebug']['trace_format'] %>
 
@@ -625,7 +625,7 @@ xdebug.trace_format = <%= node['xdebug']['trace_format'] %>
 ;
 ; When set to '1' the trace files will be appended to, instead of being
 ; overwritten in subsequent requests.
-; 
+;
 ;
 xdebug.trace_options = <%= node['xdebug']['trace_options'] %>
 
@@ -636,7 +636,7 @@ xdebug.trace_options = <%= node['xdebug']['trace_options'] %>
 ;
 ; The directory where the tracing files will be written to, make sure that the
 ; user who the PHP will be running as has write permissions to that directory.
-; 
+;
 ;
 xdebug.trace_output_dir = <%= node['xdebug']['trace_output_dir'] %>
 
@@ -649,9 +649,9 @@ xdebug.trace_output_dir = <%= node['xdebug']['trace_output_dir'] %>
 ; The setting specifies the format with format specifiers, very similar to
 ; sprintf() and strftime(). There are several format specifiers that can be used
 ; to format the file name. The '.xt' extension is always added automatically.
-; 
+;
 ; The possible format specifiers are:
-; 
+;
 ; =========  ======================================  =================  ====================================================
 ; Specifier  Meaning                                 Example Format     Example Filename
 ; =========  ======================================  =================  ====================================================
@@ -672,20 +672,20 @@ xdebug.trace_output_dir = <%= node['xdebug']['trace_output_dir'] %>
 ; %R         $_SERVER['REQUEST_URI']                 trace.%R           trace._test_xdebug_test_php_var=1_var2=2.xt
 ; ---------  --------------------------------------  -----------------  ----------------------------------------------------
 ; %U         $_SERVER['UNIQUE_ID']                   trace.%U           trace.TRX4n38AAAEAAB9gBFkAAAAB.xt
-;                                                                       
-;            3                                                          
+;
+;            3
 ; ---------  --------------------------------------  -----------------  ----------------------------------------------------
 ; %S         session_id (from $_COOKIE if set)       trace.%S           trace.c70c1ec2375af58f74b390bbdd2a679d.xt
 ; ---------  --------------------------------------  -----------------  ----------------------------------------------------
 ; %%         literal %                               trace.%%           trace.%%.xt
 ; =========  ======================================  =================  ====================================================
-; 
+;
 ; 2 This one is not available for trace file names.
-; 
+;
 ; 3 New in version 2.2. This one is set by Apache's mod_unique_id module [1]
-; 
+;
 ; [1] http://httpd.apache.org/docs/2.2/en/mod/mod_unique_id.html
-; 
+;
 ;
 xdebug.trace_output_name = <%= node['xdebug']['trace_output_name'] %>
 
@@ -699,7 +699,7 @@ xdebug.trace_output_name = <%= node['xdebug']['trace_output_name'] %>
 ; or through Function Traces. This setting does not have any influence on the
 ; number of children that is send to the client through the Remote Debugging
 ; feature.
-; 
+;
 ;
 xdebug.var_display_max_children = <%= node['xdebug']['var_display_max_children'] %>
 
@@ -712,7 +712,7 @@ xdebug.var_display_max_children = <%= node['xdebug']['var_display_max_children']
 ; with either xdebug_var_dump(), xdebug.show_local_vars or through Function
 ; Traces. This setting does not have any influence on the amount of data that is
 ; send to the client through the Remote Debugging feature.
-; 
+;
 ;
 xdebug.var_display_max_data = <%= node['xdebug']['var_display_max_data'] %>
 
@@ -726,6 +726,6 @@ xdebug.var_display_max_data = <%= node['xdebug']['var_display_max_data'] %>
 ; xdebug.show_local_vars or through Function Traces. This setting does not have
 ; any influence on the depth of children that is send to the client through the
 ; Remote Debugging feature.
-; 
+;
 ;
 xdebug.var_display_max_depth = <%= node['xdebug']['var_display_max_depth'] %>

@@ -21,12 +21,7 @@
 #
 
 include_recipe "php"
-
-# install xdebug apache module
-php_pear "xdebug" do
-  version node['xdebug']['version']
-  action :install
-end
+package "php5-xdebug"
 
 # copy over xdebug.ini to node
 template "#{node['php']['ext_conf_dir']}/xdebug.ini" do
