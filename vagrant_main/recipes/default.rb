@@ -35,7 +35,9 @@ file "/etc/php5/apache2/conf.d/upload_path.ini" do
 end
 
 # Remove the 000-default site
-apache_site "000-default"
+apache_site "000-default" do
+  enable false
+end
 
 web_app "localhost" do
   server_name "localhost"
