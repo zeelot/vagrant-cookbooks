@@ -40,10 +40,10 @@ apache_site "000-default" do
 end
 
 web_app "localhost" do
-  server_name "localhost"
-  server_aliases ["*.localhost"]
-  docroot "/home/vagrant/web-app/httpdocs"
-  kohana_environment "development"
+  server_name node[:app][:server_name]
+  server_aliases node[:app][:server_aliases]
+  docroot node[:app][:docroot]
+  kohana_environment node[:app][:kohana_environment]
 end
 
 gem_package "compass" do
