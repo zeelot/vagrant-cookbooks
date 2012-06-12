@@ -24,6 +24,17 @@ require_recipe "php::module_sqlite3"
 
 require_recipe "xdebug"
 
+package "nodejs"
+package "npm"
+
+# Installs uglifyjs for the vagrant user
+execute "install uglifyjs npm" do
+  user "vagrant"
+  group "vagrant"
+  environment ({'HOME' => '/home/vagrant'})
+  command "npm install uglify-js"
+end
+
 package "git-core"
 
 # Had some issues with an upload path not being specified so we set one here
