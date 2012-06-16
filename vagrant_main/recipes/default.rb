@@ -26,6 +26,12 @@ require_recipe "xdebug"
 
 package "nodejs"
 package "npm"
+package "git-core"
+
+# These can be defined in the Vagrantfile to install some extra needed packages
+node[:app][:extra_packages].each do |extra_package|
+  package extra_package
+end
 
 # Installs uglifyjs for the vagrant user
 execute "install uglifyjs npm" do
@@ -34,8 +40,6 @@ execute "install uglifyjs npm" do
   environment ({'HOME' => '/home/vagrant'})
   command "npm install uglify-js"
 end
-
-package "git-core"
 
 # Had some issues with an upload path not being specified so we set one here
 file "/etc/php5/apache2/conf.d/upload_path.ini" do
