@@ -27,6 +27,8 @@ require_recipe "xdebug"
 package "nodejs"
 package "npm"
 package "git-core"
+package "memcached"
+package "sqlite"
 
 # These can be defined in the Vagrantfile to install some extra needed packages
 node[:app][:extra_packages].each do |extra_package|
