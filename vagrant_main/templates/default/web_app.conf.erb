@@ -15,7 +15,7 @@
 
   <Directory <%= @params[:docroot] %>>
     php_admin_value upload_tmp_dir /tmp/<%= @params[:server_name] %>
-    DirectoryIndex index.php
+    DirectoryIndex index.php index.html
     RewriteEngine on
     Options +FollowSymlinks
     AllowOverride none
