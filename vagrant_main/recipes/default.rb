@@ -40,7 +40,7 @@ execute "install uglifyjs npm" do
   user "vagrant"
   group "vagrant"
   environment ({'HOME' => '/home/vagrant'})
-  command "npm install uglify-js"
+  command "npm install uglify-js@1"
 end
 
 # Had some issues with an upload path not being specified so we set one here
