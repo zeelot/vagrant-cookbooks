@@ -25,6 +25,7 @@ require_recipe "php::module_sqlite3"
 require_recipe "xdebug"
 require_recipe "webgrind"
 
+package "curl"
 package "nodejs"
 package "npm"
 package "git-core"
