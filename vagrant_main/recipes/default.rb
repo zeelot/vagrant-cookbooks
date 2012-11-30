@@ -23,12 +23,14 @@ require_recipe "php::module_mysql"
 require_recipe "php::module_sqlite3"
 
 require_recipe "xdebug"
+require_recipe "webgrind"
 
 package "nodejs"
 package "npm"
 package "git-core"
 package "memcached"
 package "sqlite"
+package "graphviz"
 
 # These can be defined in the Vagrantfile to install some extra needed packages
 node[:app][:extra_packages].each do |extra_package|

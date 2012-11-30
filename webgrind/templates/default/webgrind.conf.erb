@@ -1,0 +1,7 @@
+Alias /webgrind "<%= node['webgrind']['install_path'] %>"
+<Directory <%= node['webgrind']['install_path'] %>>
+  Options -Indexes FollowSymLinks MultiViews
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+</Directory>
