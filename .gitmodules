@@ -13,3 +13,6 @@
 [submodule "mysql"]
 	path = mysql
 	url = git://github.com/opscode-cookbooks/mysql.git
+[submodule "openssl"]
+	path = openssl
+	url = git://github.com/opscode-cookbooks/openssl.git
