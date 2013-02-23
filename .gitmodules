@@ -19,3 +19,6 @@
 [submodule "php"]
 	path = php
 	url = git://github.com/opscode-cookbooks/php.git
+[submodule "rabbitmq"]
+	path = rabbitmq
+	url = git://github.com/opscode-cookbooks/rabbitmq.git
