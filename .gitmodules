@@ -16,3 +16,6 @@
 [submodule "openssl"]
 	path = openssl
 	url = git://github.com/opscode-cookbooks/openssl.git
+[submodule "php"]
+	path = php
+	url = git://github.com/opscode-cookbooks/php.git
