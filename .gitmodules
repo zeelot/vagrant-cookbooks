@@ -22,3 +22,6 @@
 [submodule "rabbitmq"]
 	path = rabbitmq
 	url = git://github.com/opscode-cookbooks/rabbitmq.git
+[submodule "memcached"]
+	path = memcached
+	url = git://github.com/opscode-cookbooks/memcached.git
