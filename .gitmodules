@@ -4,3 +4,6 @@
 [submodule "apt"]
 	path = apt
 	url = git://github.com/opscode-cookbooks/apt.git
+[submodule "erlang"]
+	path = erlang
+	url = git://github.com/opscode-cookbooks/erlang.git
