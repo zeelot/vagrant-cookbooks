@@ -1,0 +1,3 @@
+[submodule "apache2"]
+	path = apache2
+	url = git://github.com/opscode-cookbooks/apache2.git
