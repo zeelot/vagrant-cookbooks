@@ -3,9 +3,6 @@ execute "initial-sudo-apt-get-update" do
   command "apt-get update"
 end
 
-require_recipe "xdebug"
-require_recipe "webgrind"
-
 package "curl"
 package "vim"
 package "nodejs"
@@ -14,14 +11,6 @@ package "git-core"
 package "memcached"
 package "sqlite"
 package "graphviz"
-
-# Installs uglifyjs for the vagrant user
-execute "install uglifyjs npm" do
-  user "vagrant"
-  group "vagrant"
-  environment ({'HOME' => '/home/vagrant'})
-  command "npm install uglify-js@1"
-end
 
 gem_package "compass" do
   action :install
