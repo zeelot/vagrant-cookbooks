@@ -14,12 +14,12 @@ package "graphviz"
 
 gem_package "compass" do
   action :install
-  version "0.11.5"
+  version node[:vm][:compass_version]
   provider Chef::Provider::Package::Rubygems
 end
 
 gem_package "foreman" do
   action :install
-  version "0.26.1"
+  version node[:vm][:foreman_version]
   provider Chef::Provider::Package::Rubygems
 end

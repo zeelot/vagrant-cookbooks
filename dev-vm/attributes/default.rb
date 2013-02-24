@@ -1,5 +1,5 @@
-default[:app][:server_name]        = "localhost"
-default[:app][:server_aliases]     = ["*.localhost"]
-default[:app][:docroot]            = "/home/vagrant/web-app/httpdocs"
-default[:app][:kohana_environment] = "development"
-default[:app][:extra_packages]     = []
+default[:vm][:compass_version]   = "0.12.2"
+default[:vm][:foreman_version]   = "0.26.1"
+default[:vm][:bashrc][:user]     = "vagrant"
+default[:vm][:bashrc][:paths]    = []
+default[:vm][:bashrc][:envs]     = {}
