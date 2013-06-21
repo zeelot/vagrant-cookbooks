@@ -25,3 +25,24 @@
 [submodule "memcached"]
 	path = memcached
 	url = git://github.com/opscode-cookbooks/memcached.git
+[submodule "build-essential"]
+	path = build-essential
+	url = git://github.com/opscode-cookbooks/build-essential.git
+[submodule "dmg"]
+	path = dmg
+	url = git://github.com/opscode-cookbooks/dmg.git
+[submodule "runit"]
+	path = runit
+	url = git://github.com/opscode-cookbooks/runit.git
+[submodule "yum"]
+	path = yum
+	url = git://github.com/opscode-cookbooks/yum.git
+[submodule "windows"]
+	path = windows
+	url = git://github.com/opscode-cookbooks/windows.git
+[submodule "chef_handler"]
+	path = chef_handler
+	url = git://github.com/opscode-cookbooks/chef_handler.git
+[submodule "xml"]
+	path = xml
+	url = git://github.com/opscode-cookbooks/xml.git
