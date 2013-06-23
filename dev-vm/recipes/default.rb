@@ -5,6 +5,8 @@ end
 
 package "curl"
 package "vim"
+package "emacs"
+package "php-elisp"
 package "nodejs"
 package "npm"
 package "git-core"
