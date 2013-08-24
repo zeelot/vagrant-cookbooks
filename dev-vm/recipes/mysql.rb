@@ -8,15 +8,7 @@ link "/etc/apache2/sites-enabled/phpmyadmin.conf" do
   notifies :reload, resources(:service => "apache2"), :delayed
 end
 
-# Create database
-execute "add-mysql-db" do
-  command "/usr/bin/mysql -u root -p#{node[:mysql][:server_root_password]} -e \"" +
-      "CREATE DATABASE web_app;\" " +
-      "mysql"
-  action :run
-  ignore_failure true
-end
-
+# Create databases
 node[:vm][:mysql][:databases].each do |database|
   execute "add-mysql-db-#{database}" do
     command "/usr/bin/mysql -u root -p#{node[:mysql][:server_root_password]} -e \"" +
@@ -27,6 +19,7 @@ node[:vm][:mysql][:databases].each do |database|
   end
 end
 
+# Create users
 node[:vm][:mysql][:users].each do |user|
   execute "revoke-mysql-perms-#{user[:username]}" do
     command "/usr/bin/mysql -u root -p#{node[:mysql][:server_root_password]} -D mysql -r -B -N -e \"REVOKE ALL PRIVILEGES, GRANT OPTION FROM #{user[:username]}\""
