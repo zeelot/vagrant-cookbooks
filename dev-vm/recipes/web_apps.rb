@@ -32,3 +32,5 @@ node[:vm][:web_apps].each do |app|
     aliases app[:aliases]
   end
 end
+
+package "php5-xdebug"
