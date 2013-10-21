@@ -29,7 +29,7 @@ node[:vm][:web_apps].each do |app|
     docroot app[:docroot]
     app_environment app[:app_environment]
     app_platform app[:app_platform]
-    aliases app[:aliases]
+    aliases app[:aliases] || []
   end
 end
 
